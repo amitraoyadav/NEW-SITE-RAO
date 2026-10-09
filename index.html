@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#DFB759" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Elysium Delhi" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="canonical" href="https://elysiumdelhi.com/" />
+    <title>Elysium The Ecstasy | Luxury Nightclub & Ultra Lounge New Delhi</title>
+    <meta name="description" content="Experience Elysium The Ecstasy at Shangri-La's Eros Hotel, Connaught Place, New Delhi. Featuring 360° Void Acoustics sound, kinetic laser matrix, VIP mezzanine tables & international DJs." />
+    <meta property="og:title" content="Elysium The Ecstasy | Luxury Nightclub & Ultra Lounge New Delhi" />
+    <meta property="og:description" content="Delhi's premier luxury nightclub at Shangri-La's Eros Hotel, Connaught Place. 360° Void Acoustics sound, kinetic laser matrix, VIP mezzanine tables & guestlist RSVP." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://elysiumdelhi.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Elysium The Ecstasy | Luxury Nightclub New Delhi" />
+    <meta name="twitter:description" content="Delhi's premier luxury nightclub at Shangri-La's Eros Hotel, Connaught Place. Void Acoustics sound, kinetic lasers, and VIP table bookings." />
+    <!-- Schema.org NightClub & FAQ markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "NightClub",
+          "@id": "https://elysiumdelhi.com/#nightclub",
+          "name": "ELYSIUM THE ECSTASY",
+          "legalName": "Elysium Luxury Nightlife & Hospitality Private Limited",
+          "description": "New Delhi's premier luxury nightclub and ultra-lounge located at Shangri-La's Eros Hotel in Connaught Place. Featuring 360° Void Acoustics sound, kinetic laser chandeliers, VIP mezzanine tables, and international guest DJs.",
+          "url": "https://elysiumdelhi.com",
+          "telephone": "+91-8595202020",
+          "email": "vip@elysiumdelhi.com",
+          "areaServed": ["New Delhi", "Delhi NCR", "India"],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Shangri-La's Eros Hotel, 19 Ashoka Rd, Janpath",
+            "addressLocality": "Connaught Place",
+            "addressRegion": "Delhi",
+            "postalCode": "110001",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "28.6219",
+            "longitude": "77.2145"
+          },
+          "priceRange": "₹₹₹₹",
+          "openingHours": "We,Th,Fr,Sa,Su 22:30-05:00",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.94",
+            "reviewCount": "1840"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Are male stags allowed at Elysium?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Male stag entry depends on the date, scheduled headline artist, and venue policy. Stags are allowed strictly subject to prior screening or accompanied by couples."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What does prepaid redeemable cover charge mean?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "It means you prepay an amount online or at the entrance, and the exact same value becomes 100% redeemable at the bar and restaurant for food & beverages."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What are Walk-ins on the Elysium website?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Walk-ins on our website are a prepaid entry reservation designed to help you skip the queue and receive prioritized door access."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800;900&family=Lexend:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=Poiret+One&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  </head>
+  <body class="safe-area-bottom">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Clean up any stale service workers or browser caches
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
+          for (const reg of registrations) {
+            reg.unregister().catch(() => {});
+          }
+        }).catch(() => {});
+      }
+      if ('caches' in window) {
+        caches.keys().then((keys) => {
+          for (const key of keys) {
+            caches.delete(key).catch(() => {});
+          }
+        }).catch(() => {});
+      }
+    </script>
+  </body>
+</html>
+

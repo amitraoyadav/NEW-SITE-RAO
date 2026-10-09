@@ -1,0 +1,84 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == "raoamityadavak123@gmail.com" ||
+        request.auth.token.email == "learnwithraoz@gmail.com" ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    match /test/{testId} {
+      allow read: if true;
+    }
+
+    match /admins/{adminId} {
+      allow get: if isSignedIn() && (request.auth.uid == adminId || isAdmin());
+      allow list: if isAdmin();
+      allow write: if isAdmin();
+    }
+
+    match /websites/{websiteId} {
+      // Public can view published websites; Users can view their own websites; Admin can view all
+      allow get: if (resource.data.status == 'published') 
+                 || (isSignedIn() && resource.data.userId == request.auth.uid)
+                 || isAdmin();
+      allow list: if (resource.data.status == 'published') 
+                  || (isSignedIn() && resource.data.userId == request.auth.uid)
+                  || isAdmin();
+      // Users can create/update/delete their own websites; Admin can manage all
+      allow create: if (isSignedIn() && request.resource.data.userId == request.auth.uid) || isAdmin();
+      allow update: if (isSignedIn() && (resource.data.userId == request.auth.uid || request.resource.data.userId == request.auth.uid)) || isAdmin();
+      allow delete: if (isSignedIn() && resource.data.userId == request.auth.uid) || isAdmin();
+    }
+
+    match /enquiries/{enquiryId} {
+      // Any visitor can submit a valid lead / enquiry
+      allow create: if request.resource.data.customerName is string
+                    && request.resource.data.customerName.size() > 0
+                    && request.resource.data.customerName.size() <= 100
+                    && request.resource.data.customerPhone is string
+                    && request.resource.data.customerPhone.size() > 0
+                    && request.resource.data.customerPhone.size() <= 30;
+      // Only admins can view, update lead status, or delete
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /pricing_plans/{planId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /discount_leads/{leadId} {
+      // Any visitor can submit a valid 15% discount lead
+      allow create: if request.resource.data.name is string
+                    && request.resource.data.name.size() > 0
+                    && request.resource.data.name.size() <= 100
+                    && request.resource.data.phone is string
+                    && request.resource.data.phone.size() > 0
+                    && request.resource.data.phone.size() <= 30;
+      // Only admins can view, update or delete discount leads
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}

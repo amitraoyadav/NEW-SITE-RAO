@@ -1,0 +1,141 @@
+{
+  "entities": {
+    "Website": {
+      "title": "Website",
+      "description": "A generated small business website configuration and content.",
+      "type": "object",
+      "properties": {
+        "businessName": { "type": "string", "maxLength": 150 },
+        "slug": { "type": "string", "maxLength": 100, "pattern": "^[a-z0-9-]+$" },
+        "category": { "type": "string", "maxLength": 50 },
+        "tagline": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "ownerName": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "whatsapp": { "type": "string", "maxLength": 30 },
+        "email": { "type": "string", "maxLength": 100 },
+        "address": { "type": "string", "maxLength": 300 },
+        "mapsUrl": { "type": "string", "maxLength": 500 },
+        "openingHours": { "type": "string", "maxLength": 200 },
+        "templateId": { "type": "string", "maxLength": 50 },
+        "status": { "type": "string", "enum": ["draft", "pending_approval", "published", "archived"] },
+        "customDomain": { "type": "string", "maxLength": 150 },
+        "domainStatus": { "type": "string", "enum": ["unconfigured", "pending_verification", "active"] },
+        "pricingPlanId": { "type": "string", "maxLength": 50 },
+        "paymentStatus": { "type": "string", "enum": ["paid", "pending", "unpaid"] },
+        "amountPaid": { "type": "number" },
+        "createdBy": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["businessName", "slug", "category", "templateId", "status"]
+    },
+    "Enquiry": {
+      "title": "Enquiry",
+      "description": "Customer enquiry or appointment lead submitted through a business website or RaoSitez.",
+      "type": "object",
+      "properties": {
+        "websiteSlug": { "type": "string", "maxLength": 100 },
+        "businessName": { "type": "string", "maxLength": 150 },
+        "customerName": { "type": "string", "maxLength": 100 },
+        "customerPhone": { "type": "string", "maxLength": 30 },
+        "customerEmail": { "type": "string", "maxLength": 100 },
+        "message": { "type": "string", "maxLength": 1000 },
+        "serviceRequested": { "type": "string", "maxLength": 150 },
+        "preferredDate": { "type": "string", "maxLength": 50 },
+        "status": { "type": "string", "enum": ["new", "contacted", "converted", "closed"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["customerName", "customerPhone", "message", "status"]
+    },
+    "PricingPlan": {
+      "title": "PricingPlan",
+      "description": "Editable RaoSitez service pricing plan.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "price": { "type": "number" },
+        "description": { "type": "string", "maxLength": 300 },
+        "popular": { "type": "boolean" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["name", "price"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Admin identity and permissions record.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "maxLength": 100 },
+        "role": { "type": "string", "enum": ["admin"] }
+      },
+      "required": ["email", "role"]
+    },
+    "UserSettings": {
+      "title": "UserSettings",
+      "description": "Operator platform settings, notification channels, and pricing configurations.",
+      "type": "object",
+      "properties": {
+        "adminEmail": { "type": "string", "maxLength": 100 },
+        "operatorPhone": { "type": "string", "maxLength": 30 },
+        "currencySymbol": { "type": "string", "maxLength": 10 },
+        "domainCnameTarget": { "type": "string", "maxLength": 100 },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["adminEmail", "operatorPhone"]
+    },
+    "TestConnection": {
+      "title": "TestConnection",
+      "description": "Diagnostic connection test ping.",
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "maxLength": 50 }
+      }
+    },
+    "DiscountLead": {
+      "title": "DiscountLead",
+      "description": "15% Instant discount campaign lead and generated coupon.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "couponCode": { "type": "string", "maxLength": 20 },
+        "discountPercent": { "type": "number" },
+        "status": { "type": "string", "enum": ["new", "contacted", "redeemed"] },
+        "expiresAt": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "phone", "couponCode"]
+    }
+  },
+  "firestore": {
+    "/test/{testId}": {
+      "schema": "TestConnection",
+      "description": "Health check diagnostic path for testing Firestore connectivity."
+    },
+    "/websites/{websiteId}": {
+      "schema": "Website",
+      "description": "Small business websites managed in RaoSitez."
+    },
+    "/enquiries/{enquiryId}": {
+      "schema": "Enquiry",
+      "description": "Customer leads and contact enquiries."
+    },
+    "/discount_leads/{leadId}": {
+      "schema": "DiscountLead",
+      "description": "Promotional 15% discount leads and coupon redemptions."
+    },
+    "/pricing_plans/{planId}": {
+      "schema": "PricingPlan",
+      "description": "RaoSitez package plans."
+    },
+    "/settings/{settingId}": {
+      "schema": "UserSettings",
+      "description": "Platform operator and user settings configuration."
+    },
+    "/admins/{adminId}": {
+      "schema": "Admin",
+      "description": "Platform administrator users."
+    }
+  }
+}

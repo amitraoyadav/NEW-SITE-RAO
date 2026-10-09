@@ -1,0 +1,6 @@
+{
+  "name": "RaoSitez",
+  "description": "Affordable, professional website builder and hosting platform for Indian small businesses such as cafes, clinics, salons, gyms, retail, and coaching centers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
